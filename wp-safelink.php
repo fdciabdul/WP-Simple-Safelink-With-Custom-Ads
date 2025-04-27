@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Simple SafeLink with Ads
- * Plugin URI: https://imtaqin.id
+ * Plugin URI: https://github.com/fdciabdul/WP-Simple-Safelink-With-Custom-Ad
  * Description: A WordPress plugin that creates and manages safe links with AdSense integration
  * Version: 1.0.0
  * Author: Your Name
