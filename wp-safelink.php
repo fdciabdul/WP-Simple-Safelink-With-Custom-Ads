@@ -250,15 +250,40 @@ class WP_SafeLink_AdSense {
             array($this, 'settings_page')
         );
     }
-
+    public function sanitize_adsense_code($input) {
+        // Use wp_kses to allow only certain HTML elements and attributes
+        return wp_kses($input, array(
+            'script' => array(
+                'async' => array(),
+                'src' => array(),
+                'data-ad-client' => array(),
+                'data-ad-slot' => array(),
+                'data-ad-format' => array(),
+            ),
+            'ins' => array(
+                'class' => array(),
+                'style' => array(),
+                'data-ad-client' => array(),
+                'data-ad-slot' => array(),
+                'data-ad-format' => array(),
+                'data-full-width-responsive' => array(),
+            ),
+        ));
+    }
+    
     /**
      * Register settings
      */
     public function register_settings() {
-        register_setting('wp_safelink_settings', 'wp_safelink_adsense_code');
-        register_setting('wp_safelink_settings', 'wp_safelink_wait_time', 'intval');
-        register_setting('wp_safelink_settings', 'wp_safelink_page_title');
-        
+        register_setting('wp_safelink_settings', 'wp_safelink_adsense_code', array(
+            'sanitize_callback' => array($this, 'sanitize_adsense_code')
+        ));
+        register_setting('wp_safelink_settings', 'wp_safelink_wait_time', array(
+            'sanitize_callback' => 'absint'
+        ));
+        register_setting('wp_safelink_settings', 'wp_safelink_page_title', array(
+            'sanitize_callback' => 'sanitize_text_field'
+        ));
         add_settings_section(
             'wp_safelink_section',
             'SafeLink Settings',

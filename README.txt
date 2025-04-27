@@ -3,7 +3,7 @@ Contributors: imtaqin
 Tags: safe links, redirect, adsense, monetization, shortlink, url shortener, links management
 Requires at least: 5.0
 Donate link: https://imtaqin.id
-Tested up to: 6.4
+Tested up to: 6.8
 Stable tag: 1.0.0
 Requires PHP: 7.2
 License: GPLv2
